@@ -15,7 +15,7 @@ class Signup extends Component {
 
     handleSubmit() {
         const newUser = {
-            user_name: this.state.username,
+            username: this.state.username,
             password: this.state.password
         }
         ApiServices.createUser(newUser)
@@ -31,7 +31,7 @@ class Signup extends Component {
 
     loginNewUser() {
         AuthApiService.postLogin({
-            user_name: this.state.username,
+            username: this.state.username,
             password: this.state.password
         })
             .then(res => {

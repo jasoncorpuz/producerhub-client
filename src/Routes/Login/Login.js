@@ -8,6 +8,7 @@ class Login extends Component {
   }
 
   onLoginSuccess() {
+    console.log('login')
     const { history } = this.props
     history.push('/home')
   }
@@ -16,14 +17,14 @@ class Login extends Component {
     e.preventDefault();
     this.setState({ error: null })
 
-    const { user_name, password } = e.target
+    const { username, password } = e.target
 
     AuthApiService.postLogin({
-      user_name: user_name.value,
+      username: username.value,
       password: password.value
     })
       .then(res => {
-        user_name.value = ''
+        username.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
         this.props.setUserId(res.id)
@@ -42,7 +43,7 @@ class Login extends Component {
           <fieldset>
           <legend><h1>Log In</h1></legend>
             <label htmlFor='input'>User Name:</label>
-            <input type='text' placeholder="username" name='user_name' required />
+            <input type='text' placeholder="username" name='username' required />
             <label htmlFor='input'>Password:</label>
             <input type='password' placeholder="password" name='password' required />
             <button type='submit'>submit</button>

@@ -1,5 +1,5 @@
 import config from '../config'
-import TokenService from './token-service'
+// import TokenService from './token-service'
 
 const ApiService = {
     getAllSongs() {
@@ -44,6 +44,14 @@ const ApiService = {
     },
     getLikesBySongId(songId) {
         return fetch(`${config.API_ENDPOINT}/likes/song/${songId}`)
+        .then(res =>
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+        )
+    },
+    getAllUsers(){
+        return fetch(`${config.API_ENDPOINT}/users/`)
         .then(res =>
             (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
