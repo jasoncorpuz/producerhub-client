@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api-service'
+import { NavLink } from 'react-router-dom';
 
 class Song extends Component {
     state = {
@@ -14,15 +15,15 @@ class Song extends Component {
 
     componentWillMount() {
         ApiService.getLikesBySongId(this.props.id)
-         .then(likes => this.setLikes(likes))
-         .catch(err => console.log('no likes yet'))
+            .then(likes => this.setLikes(likes))
+            .catch(err => console.log('no likes yet'))
     }
     render() {
         console.log(this.props)
         return (
             <div className='song'>
                 <h3>{this.props.title}</h3>
-                <h4>{this.props.username}</h4>
+                <NavLink to={`/songs/user/${this.props.user_id}`}><h4>{this.props.username}</h4></NavLink>
                 <audio controls>
                     <source src='https://test-300.s3.amazonaws.com/Untitled.mp3'
                         type='audio/mp3' />

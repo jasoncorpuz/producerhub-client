@@ -32,7 +32,43 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+form {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5%;
+
+}
+
+fieldset {
+  border: 1px white;
+  flex-direction: column;
+}
+
+input {
+  width: 60%;
+  height: 30px;
+  font-size: 20px;
+  display: block;
+  border: 1px solid black;
+}
+
+
+legend {
+  display: block;
+}
+
+button {
+  margin-top: 20px;
+  width: 120px;
+  height: 25px;
+  font-size: 20px;
+  background-color: rgba(83, 80, 80, 0.877);
+  color: white;
+  padding-bottom: 15px;
 }

@@ -81,6 +81,19 @@ const ApiService = {
          })
         .catch(e => console.log(e))
     },
+    upload(song) {
+        return fetch(`${config.API_ENDPOINT}/upload`, {
+            method: 'POST',
+            body: song
+        })
+        .then(res => {
+            (!res.ok)
+             ? res.json().then(e => Promise.reject(e))
+             :res.json()
+        })
+       .catch(e => console.log(e))
+         
+    }
 }
 
 
