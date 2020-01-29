@@ -6,6 +6,7 @@ class Landing extends Component {
         this.state = {  };
     }
     render() {
+        console.log('landing rendered')
         return (
             <div>landing</div>
         );
