@@ -13,13 +13,27 @@ class Song extends Component {
         })
     }
 
-    componentWillMount() {
+    componentDidMount() {
         ApiService.getLikesBySongId(this.props.id)
-            .then(likes => this.setLikes(likes))
-            .catch(err => console.log('no likes yet'))
+            .then(likes => {
+                if (!likes.length) {
+                    return null
+                }
+                this.setLikes(likes)
+            })
+            .catch(err =>  null)
     }
+
+    uploadLike(e) {
+        const songId = e.target.value
+        ApiService.postLike(songId)
+         .then(res => res.json())
+         .then(json => console.log(json))
+         .catch(e => console.log(e))
+    }
+
     render() {
-        console.log(this.props)
+
         return (
             <div className='song'>
                 <h3>{this.props.title}</h3>
@@ -29,6 +43,12 @@ class Song extends Component {
                         type='audio/mp3' />
                 </audio>
                 <p>{this.state.likes} musicians like this track</p>
+                <button 
+                className='like' 
+                type='submit' 
+                value={this.props.id}
+                onClick={e => this.uploadLike(e)}
+                >like</button>
             </div>
         )
     }
