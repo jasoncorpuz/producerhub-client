@@ -88,12 +88,20 @@ const ApiService = {
         })
        .catch(e => console.log(e))   
     },
-    postLike(songId) {
+    uploadLike(songId) {
         return fetch(`${config.API_ENDPOINT}/likes/song/${songId}`, {
             method: 'POST', 
             headers: {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`
+            }
+        })
+    },
+    deleteLike(likeId) {
+        return fetch(`${config.API_ENDPOINT}/likes/${likeId}`, {
+            method: 'DELETE', 
+            headers: {
+                'content-type': 'application/json'
             }
         })
     },

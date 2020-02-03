@@ -7,7 +7,6 @@ class Landing extends Component {
         this.state = {  };
     }
     render() {
-        console.log('landing rendered')
         return (<>
             <h1>Producer Hub</h1>
             <h2>Share your music with musicians.</h2>

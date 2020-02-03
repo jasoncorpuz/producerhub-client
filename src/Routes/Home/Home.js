@@ -1,51 +1,22 @@
 import React, { Component } from 'react';
-import TokenService from '../../services/token-service'
-import ApiService from '../../services/api-service'
 import Song from '../Song/Song'
 import { NavLink, Link } from 'react-router-dom'
+import ProducerContext from '../../producerContext'
 
 class Home extends Component {
     state = {
         songs: [{}],
         loaded: false
     }
-    setToken = token => {
-        if (token) {
-            this.setState({
-                token
-            })
-            const jwt = TokenService.parseJsonToken(token)
-            const { user_id, sub } = jwt
 
-            this.setState({
-                id: user_id,
-                username: sub
-            })
-        }
-    }
+    static contextType = ProducerContext
 
-    setSongs = fetchedSongs => {
-        this.setState({
-            songs: fetchedSongs,
-            loaded: true
-        })
-    }
-    //render song feed
-    //upload
-    // nav
-    componentDidMount() {
-        this.setToken(TokenService.getAuthToken())
-        ApiService.getAllSongs()
-            .then(res => this.setSongs(res))
-            .catch(err => { throw new Error(err) })
-
-    }
     render() {
-        const { songs, loaded } = this.state
-        const songList = loaded ?
+        const { songs, userId } = this.context
+        const songList = songs.length !== 1 ?
             songs.map((song, idx) => {
                 return (
-                    <Song {...song} key={idx} />
+                    <Song {...song} key={idx} user={userId}/>
                 )
             })
             : null

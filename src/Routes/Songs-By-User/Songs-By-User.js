@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
 import Song from '../Song/Song'
-import ApiService from '../../services/api-service'
+import ProducerContext from '../../producerContext'
 
 
 
 class SongsByUser extends Component {
     state = {
-        songs: [{}]
+        songs: [{}],
+        loaded: false
     }
 
-    setSongs(songs) {
-        this.setState({
-            songs: songs
-        })
-    }
+    static contextType = ProducerContext
 
 
-    componentDidMount() {
-        ApiService.getSongByUserId(this.props.match.params.id)
-            .then(songs => this.setSongs(songs))
-    }
     render() {
-        const { songs } = this.state
-        console.log(songs)
-        const songList = songs.map((song, idx) => {
-            return <Song {...song} key={idx} />
-        })
+        const { songs, userId } = this.context
+        const currentUser = Number(this.props.match.params.id)
+        const songsByUser = songs.filter(song => song.user_id === currentUser)
+
+        const songList = songsByUser ?  songsByUser.map((song, idx) => {
+            return <Song {...song} key={idx} user={userId}/>
+        }) : null
         return (
             <div>
                 {songList}
