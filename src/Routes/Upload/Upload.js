@@ -11,6 +11,7 @@ class Upload extends Component {
             file: null,
             location: '',
             error: false,
+            uploadError:null,
             loading: false,
         };
     }
@@ -20,7 +21,7 @@ class Upload extends Component {
     fileSelectedHandler = event => {
         const file = event.target.files[0]
         this.setState({
-            file: file
+            file: file,             
         })
         //file.type
     }
@@ -53,9 +54,18 @@ class Upload extends Component {
 
 
         ApiService.upload(fd)
-            .then(res => res.data)
-            .then(location => this.uploadSongData(location))
-            .catch(e => console.log(e))
+        .then(res => res.data)
+        .then(location => this.uploadSongData(location))
+        .catch(e => this.setState({
+            uploadError: e, 
+            loading: false
+        }))
+        // .then(res => res.data)
+        // .then(location => this.uploadSongData(location))
+        // .catch(e => this.setState({
+        //     uploadError: e, 
+        //     loading: false
+        // }))
     }
 
 
@@ -72,9 +82,7 @@ class Upload extends Component {
         }
 
         ApiService.saveSong(newSongData)
-            .then(song => {
-                console.log('we did it')
-
+            .then(song => {        
                 this.props.history.push('/upload-success')
             })
 
@@ -92,7 +100,7 @@ class Upload extends Component {
         })
     }
 
-    renderError() {
+    renderVerificationError() {
         return (
             <div>
                 file must be an audio file.
@@ -100,9 +108,17 @@ class Upload extends Component {
         )
     }
 
+    renderUploadError(error){
+        return (
+            <div>
+                oops, there was an error with your upload. please try again.
+            </div>
+        )
+    }
+
     //verify audio file
     render() {
-        const { error, loading } = this.state
+        const { error, loading, uploadError } = this.state
         return (
             <form onSubmit={(e) => this.verifyAudio(e)}>
                 <legend><h1>upload.</h1></legend>
@@ -113,7 +129,8 @@ class Upload extends Component {
                 <label htmlFor='description'>description:</label>
                 <input type='text area' placeholder='write a short description...' required onChange={e => this.updateDescription(e.target.value)} />
                 <button type='submit'>upload</button>
-                {error && this.renderError()}
+                {error && this.renderVerificationError()}
+                {uploadError && this.renderUploadError()}
                 <Loader
                     loading={loading}
                 />

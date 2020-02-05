@@ -89,6 +89,13 @@ const ApiService = {
                 }
             })
             .catch(e => console.log(e))
+            // return fetch(`${config.API_ENDPOINT}/upload`, {
+            //     method: 'POST',
+            //     body: song, 
+            //     // headers : {
+            //     //     'content-type': 'multipart/form-data',
+            //     // }, 
+            // })
     },
     uploadLike(songId) {
         return fetch(`${config.API_ENDPOINT}/likes/song/${songId}`, {
