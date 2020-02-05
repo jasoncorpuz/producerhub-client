@@ -76,5 +76,12 @@ span.like-count {
 }
 
 audio {
-  margin: 10px
+  margin: auto;
+  margin-bottom: 20;
+  display: block;
+}
+
+a.download{
+  display: block;
+  margin: 10px 0 10px 0 
 }
