@@ -14,6 +14,10 @@ class Song extends Component {
 
     static contextType = ProducerContext
 
+    static defaultProps ={
+        user: 1
+    }
+    
     setLikesCounts() {
 
 
@@ -29,7 +33,6 @@ class Song extends Component {
 
     setUserLikes(likes) {
         const { user, id } = this.props
-
         const likesByUser = likes.filter(like => user === like.user_id)
         const userLikesSong = likesByUser.find(like => like.song_id === id) ? true : false
 
@@ -102,6 +105,7 @@ class Song extends Component {
         )
     }
 }
+
 
 export default Song;
 

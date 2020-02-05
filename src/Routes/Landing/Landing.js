@@ -36,15 +36,15 @@ class Landing extends Component {
                     <source src='https://test-300.s3-us-west-1.amazonaws.com/120_D%23maj7_Guitar_7.wav'
                         type='audio/mp3' />
                 </audio>
-                    <a className='download'href='https://test-300.s3-us-west-1.amazonaws.com/120_D%23maj7_Guitar_7.wav' download>download</a>
+                    <a className='download'href='https://drive.google.com/file/d/1mPA17UPWhE1jgTU0t8MYSivEsSeE8Pv2/view?usp=sharing' >download</a>
             
             
              <audio controls >
                     <source src='https://test-300.s3-us-west-1.amazonaws.com/DHP6_B_Mix_12_126.wav'
                         type='audio/mp3' />
                 </audio>
-                <a className='download'href='https://test-300.s3-us-west-1.amazonaws.com/DHP6_B_Mix_12_126.wav' download>download</a>
-
+                <a className='download'href='https://drive.google.com/file/d/1eJWWJ9ho32CmkOfCwx899z8ZfyrHwz48/view?usp=sharing' >download</a>
+                these are royalty free audio files you can use freely for demonstration purposes. please do not upload audio files that aren't yours!
 
                 </section>
           </section>

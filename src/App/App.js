@@ -33,7 +33,7 @@ class App extends Component {
     this.setToken(TokenService.getAuthToken())
     ApiService.getAllSongs()
       .then(res => this.setSongs(res))
-      .catch(err => { throw new Error(err) })
+      .catch(err => null)
     ApiService.getAllLikes()
       .then(res => this.setState({
         likes: res
