@@ -34,7 +34,6 @@ class Home extends Component {
     render() {
         const { songs } = this.context
         const userId = this.state.user_id
-        console.log(userId)
         const songList = songs.length !== 1 ?
             songs.map((song, idx) => {
                 return (

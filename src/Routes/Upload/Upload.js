@@ -80,9 +80,10 @@ class Upload extends Component {
             description: description,
             location: location,
         }
-
+        console.log(this.context)
         ApiService.saveSong(newSongData)
-            .then(song => {        
+            .then(song => {
+                this.context.addSong(song)
                 this.props.history.push('/upload-success')
             })
 

@@ -40,6 +40,12 @@ class App extends Component {
       }))
   }
 
+  addSong = newSong => {
+    console.log('called')
+    this.setState({
+      songs: [...this.state.songs, newSong]
+    })
+  }
   setToken = token => {
     if (token) {
       this.setState({

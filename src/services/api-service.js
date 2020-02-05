@@ -115,7 +115,6 @@ const ApiService = {
         })
     },
     saveSong(songData) {
-        console.log(songData)
         return fetch(`${config.API_ENDPOINT}/songs`, {
             method: 'POST', 
             body: JSON.stringify(songData),
@@ -124,12 +123,9 @@ const ApiService = {
                 'authorization': `bearer ${TokenService.getAuthToken()}`
             }
         })
-        .then(res => {
-            (!res.ok)
-             ? res.json().then(e => Promise.reject(e))
-             :res.json()
-        })
-       .catch(e => console.log(e))
+        .then(res => res.json())
+        
+        
     },
 }
 
