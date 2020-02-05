@@ -8,6 +8,7 @@ import producerContext from '../producerContext'
 import Login from '../Routes/Login/Login'
 import Nav from '../Routes/Nav/Nav'
 import SongsByUser from '../Routes/Songs-By-User/Songs-By-User'
+import UploadSuccess from '../Routes/Upload-Success/Upload-Success'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import ApiService from '../services/api-service';
 import TokenService from '../services/token-service'
@@ -20,36 +21,7 @@ class App extends Component {
   }
 
 
-  //cbs as arrow functions
 
-  postLike = like => {
-    console.log(this.state.likes.length)
-    this.setState({
-      likes: [...this.state.likes, like]
-    })
-
-    this.props.history.push('/home')
-    console.log(this.state.likes.length)
-    console.log('post like called')
-  }
-
-  deleteLike = like => {
-    console.log(typeof like)
-    console.log(this.state.likes.length)
-    const { likes } = this.state
-    const newLikes = likes.filter(
-      currentLikes => like !== currentLikes.id
-    )
-
-    this.props.history.push('/home')
-    console.log(newLikes)
-
-    this.setState({
-      likes: newLikes
-    })
-    console.log('delete like called')
-    console.log(this.state.likes.length)
-  }
 
   setSongs = fetchedSongs => {
     this.setState({
@@ -89,18 +61,23 @@ class App extends Component {
       songs: this.state.songs,
       postLike: this.postLike,
       deleteLike: this.deleteLike,
-      userId: this.state.id
+      userId: this.state.id,
+      addSong: this.addSong
     }
+
+    const { username } = this.state
     return (
       <producerContext.Provider value={contextValue}>
         <Route path='/' component={Nav} />
         <main>
           <Switch>
             <Route path='/' component={Landing} exact />
-            <Route path='/home' component={Home} />
+            <Route path='/home' render={(props) => <Home {...props} username={username} />} />
             <Route path='/upload' component={Upload} />
+            <Route path='/upload-success' component={UploadSuccess} />
             <Route path='/signup' render={(props) => <Signup {...props} setUserId={this.setUserId} />} />
-            <Route path='/login' render={(props) => <Login {...props} setUserId={this.setUserId} />} />
+            {/* <Route path='/login' render={(props) => <Login {...props} setUserId={this.setUserId} />} /> */}
+            <Route path='/login' component={Login} />
             <Route path='/songs/user/:id' render={(props) => <SongsByUser {...props} setUserId={this.setUserId} />} />
           </Switch>
         </main>

@@ -4,41 +4,60 @@ import producerContext from '../../producerContext'
 
 class LikeButton extends Component {
     state = {
-        likes: [{}]
+        likes: [{}],
+        touched: false,
+        liked: true,
+        likestatus: 'like',
+        id: ''
     }
 
     static contextType = producerContext
 
+    setId(res) {
+        const id = res.response.id
+        this.setState({
+            id: id
+        })
+    }
+
     postLike(e, cb) {
         //song id 
         const { id, addLike } = this.props
-        console.log(id, 'posted!')
         ApiService.uploadLike(id)
-        .then(res => res.json())
-        .catch(e => console.log(e))
-        addLike(); 
+            .then(res => res.json())
+            .then(res => this.setId(res))
+            .catch(e => console.log(e))
+        addLike();
+        this.setState({
+            likestatus: 'unlike',
+            liked: true,
+
+        })
     }
 
     deleteLike(likeId) {
-        console.log(likeId)
-        const {subtractLike} = this.props
+        const { subtractLike } = this.props
         ApiService.deleteLike(likeId)
         subtractLike();
+        this.setState({
+            likestatus: 'like',
+            liked: false
+        })
     }
 
     render() {
-        const { likes, user } = this.props
+        const { likes, user, liked } = this.props
 
-        const likedByUser = likes.find(like => user === like.user_id)
-        
-        const renderLikeButton = likedByUser ?
-        
+        const likeByUser = likes.find(like => user === like.user_id)
+        const id = !likeByUser ? this.state.id : likeByUser.id
+        const renderNextLikeButton = liked ?
+
             <button
-                onClick={(e) => this.deleteLike(likedByUser.id)}
+                onClick={(e) => this.deleteLike(id)}
             >
-                unlike 
+                unlike
             </button>
-            
+
             :
             <button
                 onClick={(e) => this.postLike(e)}
@@ -50,9 +69,10 @@ class LikeButton extends Component {
         // app tries to find if user id matches a like
         // if it matches, render liked.
         // if no match, api call to like
-        return (<>
-            {renderLikeButton}
-        </>
+        return (
+            <>
+                {renderNextLikeButton}
+            </>
         )
     }
 }

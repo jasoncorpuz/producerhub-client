@@ -36,7 +36,6 @@ class Signup extends Component {
         })
             .then(res => {
                 TokenService.saveAuthToken(res.authToken)
-                this.props.setUserId(res.id)
                 this.onLoginSuccess()
             })
             .catch(res => {

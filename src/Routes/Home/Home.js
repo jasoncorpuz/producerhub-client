@@ -22,9 +22,9 @@ class Home extends Component {
             : null
         return (
             <div>
-                <h1>{this.state.username}</h1>
+                <h1>{this.props.username}</h1>
                 <h2>
-                    <NavLink to={`/songs/user/${this.state.id}`}>my songs</NavLink>
+                    <NavLink to={`/songs/user/${userId}`}>my songs</NavLink>
                     {' '}
                     <Link to='/upload'>upload</Link>
                 </h2>

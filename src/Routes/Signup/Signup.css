@@ -5,12 +5,10 @@ div {
     text-align: center;
 }
 
-fieldset {
-    display: flex;
-}
+
 
 label {
-    text-align: left;
+    text-align: center;
 }
 
 input.confirm-password{

@@ -1,4 +1,5 @@
 import config from '../config'
+import axios from 'axios'
 import TokenService from './token-service'
 
 const ApiService = {
@@ -82,11 +83,12 @@ const ApiService = {
         .catch(e => console.log(e))
     },
     upload(song) {
-        return fetch(`${config.API_ENDPOINT}/upload`, {
-            method: 'POST',
-            body: song
-        })
-       .catch(e => console.log(e))   
+            return axios.post(`${config.API_ENDPOINT}/upload`, song, {
+                onUploadProgress: ProgressEvent => {
+                    console.log('Upload Progress ' + Math.round(ProgressEvent.loaded / ProgressEvent.total * 100) + '%' )
+                }
+            })
+            .catch(e => console.log(e))
     },
     uploadLike(songId) {
         return fetch(`${config.API_ENDPOINT}/likes/song/${songId}`, {
@@ -106,6 +108,7 @@ const ApiService = {
         })
     },
     saveSong(songData) {
+        console.log(songData)
         return fetch(`${config.API_ENDPOINT}/songs`, {
             method: 'POST', 
             body: JSON.stringify(songData),

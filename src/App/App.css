@@ -28,15 +28,7 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
 
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 form {
   background-color: white;
@@ -55,7 +47,9 @@ input {
   height: 30px;
   font-size: 20px;
   display: block;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  height: 48px;
+  margin: auto;
 }
 
 
@@ -71,4 +65,16 @@ button {
   background-color: rgba(83, 80, 80, 0.877);
   color: white;
   padding-bottom: 15px;
+}
+
+p.description {
+  font-style: italic;
+}
+
+span.like-count {
+  font-weight: bold;
+}
+
+audio {
+  margin: 10px
 }

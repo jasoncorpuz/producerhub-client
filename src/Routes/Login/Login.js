@@ -8,7 +8,6 @@ class Login extends Component {
   }
 
   onLoginSuccess() {
-    console.log('login')
     const { history } = this.props
     history.push('/home')
   }
@@ -27,8 +26,8 @@ class Login extends Component {
         username.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
-        this.props.setUserId(res.id)
         this.onLoginSuccess()
+
       })
       .catch(res => {
         this.setState({ error: res.error })

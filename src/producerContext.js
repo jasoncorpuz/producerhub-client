@@ -2,7 +2,8 @@ import React from 'react';
 
 const producerContext = React.createContext({
     postLike: () => {},
-    deleteLike: () => {}
+    deleteLike: () => {}, 
+    addSong: () => {}
 })
 
 export default producerContext;
