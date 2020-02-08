@@ -11,6 +11,14 @@ const ApiService = {
                     : res.json()
             )
     },
+    getNewSongs() {
+        return fetch(`${config.API_ENDPOINT}/songs?order=newest`)
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+    },
     getSongById(id) {
         return fetch(`${config.API_ENDPOINT}/songs/${id}`)
             .then(res =>

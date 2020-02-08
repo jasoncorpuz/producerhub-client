@@ -13,7 +13,6 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import ApiService from '../services/api-service';
 import TokenService from '../services/token-service'
 
-
 class App extends Component {
   state = {
     likes: [{}],
@@ -31,7 +30,7 @@ class App extends Component {
   }
   componentDidMount() {
     this.setToken(TokenService.getAuthToken())
-    ApiService.getAllSongs()
+    ApiService.getNewSongs()
       .then(res => this.setSongs(res))
       .catch(err => null)
     ApiService.getAllLikes()
@@ -46,6 +45,17 @@ class App extends Component {
       songs: [...this.state.songs, newSong]
     })
   }
+
+  sortSongs = order =>  {
+    order === 'newest'
+      ? ApiService.getNewSongs()
+        .then(res => this.setSongs(res))
+        .catch(err => console.log(err))
+      : ApiService.getAllSongs()
+        .then(res => this.setSongs(res))
+        .catch(err => console.log(err))
+  }
+
   setToken = token => {
     if (token) {
       this.setState({
@@ -68,7 +78,8 @@ class App extends Component {
       postLike: this.postLike,
       deleteLike: this.deleteLike,
       userId: this.state.id,
-      addSong: this.addSong
+      addSong: this.addSong, 
+      sortSongs: this.sortSongs
     }
 
     const { username } = this.state

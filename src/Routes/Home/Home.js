@@ -12,24 +12,29 @@ class Home extends Component {
 
     static contextType = ProducerContext
 
+    handleSort(e) {
+        const { sortSongs } = this.context
+        sortSongs(e.target.value)
+    }
+
     componentDidMount() {
         this.setToken(TokenService.getAuthToken())
     }
 
     setToken = token => {
         if (token) {
-          this.setState({
-            token
-          })
-          const jwt = TokenService.parseJsonToken(token)
-          const { user_id, sub } = jwt
-          
-          this.setState({
-            user_id,
-            username: sub
-          })
+            this.setState({
+                token
+            })
+            const jwt = TokenService.parseJsonToken(token)
+            const { user_id, sub } = jwt
+
+            this.setState({
+                user_id,
+                username: sub
+            })
         }
-      }
+    }
 
     render() {
         const { songs } = this.context
@@ -37,7 +42,7 @@ class Home extends Component {
         const songList = songs.length !== 1 ?
             songs.map((song, idx) => {
                 return (
-                    <Song {...song} key={idx} user={userId}/>
+                    <Song {...song} key={idx} user={userId} />
                 )
             })
             : null
@@ -49,6 +54,12 @@ class Home extends Component {
                     {' '}
                     <Link to='/upload'>upload</Link>
                 </h2>
+                <label htmlFor='select'>order by</label>
+                {' '}
+                <select onChange={e => this.handleSort(e)}>
+                    <option value='newest'>newest</option>
+                    <option value='oldest'>oldest</option>
+                </select>
                 {songList}
             </div>
         );

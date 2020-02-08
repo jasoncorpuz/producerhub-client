@@ -14,3 +14,12 @@ label {
 input.confirm-password{
     margin-bottom: 20px;
 }
+
+button.submit {
+    display: block;
+    margin: auto
+}
+
+span.form-validation {
+    margin-bottom: 20px;
+}

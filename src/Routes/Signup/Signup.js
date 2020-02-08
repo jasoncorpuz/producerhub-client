@@ -20,7 +20,11 @@ class Signup extends Component {
         }
         ApiServices.createUser(newUser)
             .then(res => {
-                this.loginNewUser()
+                res.json()
+            })
+            .then(res => console.log(res))
+            .catch(res => {
+                this.setState({ error: res.error })
             })
     }
 
@@ -117,8 +121,8 @@ class Signup extends Component {
                             required
                             className='confirm-password'
                         />
-                        <span>password must contain 8 characters (at least one of each: uppercase, lowercase, number and special character)</span>
-                        <button type='submit'>submit</button>
+                        <button type='submit' className='submit'>submit</button>
+                        <div className='form-validation'>password must contain 8 characters (at least one of each: uppercase, lowercase, number and special character)</div>
                         <div role='alert'>
                             {error && <p>{error}</p>}
                         </div>
