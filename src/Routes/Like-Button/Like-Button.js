@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api-service'
 import producerContext from '../../producerContext'
+import heart from './heart.png'
 
 class LikeButton extends Component {
     state = {
