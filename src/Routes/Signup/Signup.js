@@ -96,7 +96,7 @@ class Signup extends Component {
                 <section>
                     <fieldset>
                         <legend><h1>Sign Up</h1></legend>
-                        <label htmlFor='user-name'>User Name:</label>
+                        <label htmlFor='user-name'>Username:</label>
                         <input
                             type='text'
                             placeholder="username"

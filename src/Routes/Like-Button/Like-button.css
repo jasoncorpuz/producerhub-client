@@ -1,0 +1,57 @@
+button.like-button:link,
+button.like-button:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px ;
+    display: inline-block;
+    border-radius: 100px; 
+    transition: all .2s;
+    position: relative;
+/* 
+    animation-name: moveInBottom;
+    animation-duration: 2s;
+    animation-timing-function: ease-out; */
+}
+
+button.like-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(32, 30, 30, 0.2);
+}
+
+button.like-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+
+button.like-button-white {
+    background-color: white;
+    color: #777
+}
+
+button.like-button::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+button.like-button-white::after {
+    background-color:white;
+}
+
+button.like-button:hover::after {
+    transform: scaleX(1.4) scaleY(2.0);
+    opacity: 0;
+}
+
+button.like-button-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+}

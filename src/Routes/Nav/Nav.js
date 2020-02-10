@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
+import './Nav.css'
 
 export default class Nav extends Component {
   handleLogoutClick = () => {
@@ -56,7 +57,7 @@ export default class Nav extends Component {
 
   render() {
     return (
-      <nav className='Header'>
+      <nav className='header'>
         {TokenService.hasAuthToken()
           ? this.directHome()
           : this.directLanding()

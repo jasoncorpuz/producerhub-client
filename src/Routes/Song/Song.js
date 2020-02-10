@@ -81,6 +81,9 @@ class Song extends Component {
         const { likeCount, likesArray, liked } = this.state
         const { user, title, user_id, location, description, username} = this.props //drilling
 
+        const renderLikes = likeCount !== 1 
+        ? <p><span className='like-count'>{likeCount} musicians like this track</span></p>
+        : <p><span className='like-count'>{likeCount} musician likes this track</span></p>
         return (
             <div className='song'>
                 <h3>{title}</h3>
@@ -91,7 +94,7 @@ class Song extends Component {
                 </audio>
                 <h4>description:</h4>
                 <p className ='description'>{description}</p>
-                <p><span className='like-count'>{likeCount} musicians like this track</span></p>
+                {renderLikes}
                 <LikeButton
                     {...this.props}
                     likes={likesArray}

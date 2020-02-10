@@ -8,7 +8,8 @@ import ApiService from '../../services/api-service';
 class SongsByUser extends Component {
     state = {
         songs: [{}],
-        loaded: false
+        loaded: false,
+        user:''
     }
 
     static contextType = ProducerContext
@@ -20,17 +21,26 @@ class SongsByUser extends Component {
                 songs: res,
                 loaded: true
             }))
+        
+        ApiService.getUserbyId(currentUser)
+         .then(res => this.setState({
+             user: res[0].username
+         }))
     }
 
     render() {
-        const { songs, loaded } = this.state
+        const { songs, loaded, user} = this.state
+        console.log(user)
         const {userId} = this.context
-
+        const renderUser = user.length 
+        ? <h1>{user}</h1>
+        : null
         const songList = loaded ? songs.map((song, idx) => {
             return <Song {...song} key={idx} user={userId} />
         }) : null
         return (
             <div>
+                {renderUser}
                 {songList}
             </div>
         );

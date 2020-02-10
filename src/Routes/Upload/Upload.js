@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ApiService from '../../services/api-service';
 import Loader from '../Components/loader'
 import ProducerContext from '../../producerContext'
-
+import './Upload.css'
 
 class Upload extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class Upload extends Component {
             file: null,
             location: '',
             error: false,
-            uploadError:null,
+            uploadError: null,
             loading: false,
         };
     }
@@ -21,7 +21,7 @@ class Upload extends Component {
     fileSelectedHandler = event => {
         const file = event.target.files[0]
         this.setState({
-            file: file,             
+            file: file,
         })
         //file.type
     }
@@ -47,19 +47,19 @@ class Upload extends Component {
     uploadSong() {
         const song = this.state.file
         const fd = new FormData()
-        
+
 
         fd.append('element1', ' ')
         fd.append('element2', song)
 
 
         ApiService.upload(fd)
-        .then(res => res.data)
-        .then(location => this.uploadSongData(location))
-        .catch(e => this.setState({
-            uploadError: e, 
-            loading: false
-        }))
+            .then(res => res.data)
+            .then(location => this.uploadSongData(location))
+            .catch(e => this.setState({
+                uploadError: e,
+                loading: false
+            }))
         // .then(res => res.data)
         // .then(location => this.uploadSongData(location))
         // .catch(e => this.setState({
@@ -109,7 +109,7 @@ class Upload extends Component {
         )
     }
 
-    renderUploadError(error){
+    renderUploadError(error) {
         return (
             <div>
                 oops, there was an error with your upload. please try again.
@@ -128,7 +128,14 @@ class Upload extends Component {
                 <label htmlFor='file'>audio file:</label>
                 <input type='file' onChange={this.fileSelectedHandler} required />
                 <label htmlFor='description'>description:</label>
-                <input type='text area' placeholder='write a short description...' required onChange={e => this.updateDescription(e.target.value)} />
+                <textarea
+                    className='text-area'
+                    rows='3'
+                    columns='10'
+                    type='text area'
+                    placeholder='write a short description...'
+                    required
+                    onChange={e => this.updateDescription(e.target.value)} />
                 <button type='submit'>upload</button>
                 {error && this.renderVerificationError()}
                 {uploadError && this.renderUploadError()}

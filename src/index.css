@@ -18,11 +18,13 @@ code {
 
 div.song {
   margin-top: 15px;
-  padding-bottom: 80px;
+  padding-bottom: 50px;
+  border: 1px solid white;
+  border-radius: 20px;
 }
 
 div.song:nth-child(even) {
-  background-color: #aaa;
+  background-color: rgba(98, 178, 202, 0.219);
 }
 
 a {

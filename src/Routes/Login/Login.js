@@ -41,7 +41,7 @@ class Login extends Component {
         <section>
           <fieldset>
           <legend><h1>Log In</h1></legend>
-            <label htmlFor='input'>User Name:</label>
+            <label htmlFor='input'>Username:</label>
             <input type='text' placeholder="username" name='username' required />
             <label htmlFor='input'>Password:</label>
             <input type='password' placeholder="password" name='password' required />

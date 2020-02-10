@@ -12,6 +12,12 @@ import UploadSuccess from '../Routes/Upload-Success/Upload-Success'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import ApiService from '../services/api-service';
 import TokenService from '../services/token-service'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+// import { fab } from '@fortawesome/free-brands-svg-icons'
+// import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+
+// library.add(fab, faCheckSquare, faCoffee)
+
 
 class App extends Component {
   state = {

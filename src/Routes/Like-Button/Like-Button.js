@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/api-service'
 import producerContext from '../../producerContext'
-import heart from './heart.png'
+import './Like-button.css'
 
 class LikeButton extends Component {
     state = {
@@ -54,6 +54,7 @@ class LikeButton extends Component {
         const renderNextLikeButton = liked ?
 
             <button
+                className='like-button like-button-animated'
                 onClick={(e) => this.deleteLike(id)}
             >
                 unlike
@@ -61,6 +62,7 @@ class LikeButton extends Component {
 
             :
             <button
+            className='like-button like-button-animated'
                 onClick={(e) => this.postLike(e)}
             >
                 like
