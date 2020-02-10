@@ -30,7 +30,6 @@ class SongsByUser extends Component {
 
     render() {
         const { songs, loaded, user} = this.state
-        console.log(user)
         const {userId} = this.context
         const renderUser = user.length 
         ? <h1>{user}</h1>

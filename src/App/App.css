@@ -46,7 +46,7 @@ html {
 main {
   font-family: 'Karla', sans-serif;
   color: white;
-
+  font-size: 20px;
   padding: 0 10px 20px 10px
 }
 
@@ -60,6 +60,12 @@ h3 {
 a {
   color: white
 }
+
+a:hover {
+  color: blue;
+  cursor: pointer
+}
+
 
 form {
   color: black;
@@ -122,6 +128,11 @@ button.like-button {
 a.download {
   display: block;
   margin: 10px 0 10px 0
+}
+
+div.sweet-loading {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 @media only screen and (min-width:650px) {}

@@ -1,14 +1,13 @@
 import React from "react";
 import { css } from "@emotion/core";
-// First way to import
-import { HashLoader } from "react-spinners";
-// Another way to import. This is recommended to reduce bundle size
+import { ClipLoader } from "react-spinners";
 
- 
-// Can be a string as well. Need to ensure each key-value pair ends with ;
+
 const override = css`
   display: block;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px
   border-color: red;
 `;
  
@@ -16,15 +15,17 @@ class Loader extends React.Component {
  
   render() {
     return (
+      <>
       <div className="sweet-loading">
-        <HashLoader
+        <ClipLoader
           css={override}
-          size={50}
+          size={40}
           //size={"150px"} this also works
-          color={"gray"}
+          color={"purple"}
           loading={this.props.loading}
         />
       </div>
+      </>
     );
   }
 }

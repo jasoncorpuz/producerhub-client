@@ -46,13 +46,14 @@ class App extends Component {
   }
 
   addSong = newSong => {
-    console.log('called')
+    const { song } = newSong
+
     this.setState({
-      songs: [...this.state.songs, newSong]
+      songs: [...this.state.songs, song]
     })
   }
 
-  sortSongs = order =>  {
+  sortSongs = order => {
     order === 'newest'
       ? ApiService.getNewSongs()
         .then(res => this.setSongs(res))
@@ -84,7 +85,7 @@ class App extends Component {
       postLike: this.postLike,
       deleteLike: this.deleteLike,
       userId: this.state.id,
-      addSong: this.addSong, 
+      addSong: this.addSong,
       sortSongs: this.sortSongs
     }
 
@@ -99,7 +100,6 @@ class App extends Component {
             <Route path='/upload' component={Upload} />
             <Route path='/upload-success' component={UploadSuccess} />
             <Route path='/signup' render={(props) => <Signup {...props} setUserId={this.setUserId} />} />
-            {/* <Route path='/login' render={(props) => <Login {...props} setUserId={this.setUserId} />} /> */}
             <Route path='/login' component={Login} />
             <Route path='/songs/user/:id' render={(props) => <SongsByUser {...props} setUserId={this.setUserId} />} />
           </Switch>

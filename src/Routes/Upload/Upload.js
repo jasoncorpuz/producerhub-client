@@ -60,12 +60,6 @@ class Upload extends Component {
                 uploadError: e,
                 loading: false
             }))
-        // .then(res => res.data)
-        // .then(location => this.uploadSongData(location))
-        // .catch(e => this.setState({
-        //     uploadError: e, 
-        //     loading: false
-        // }))
     }
 
 
@@ -80,7 +74,7 @@ class Upload extends Component {
             description: description,
             location: location,
         }
-        console.log(this.context)
+
         ApiService.saveSong(newSongData)
             .then(song => {
                 this.context.addSong(song)
@@ -139,9 +133,11 @@ class Upload extends Component {
                 <button type='submit'>upload</button>
                 {error && this.renderVerificationError()}
                 {uploadError && this.renderUploadError()}
+                <div className="sweet-loading">
                 <Loader
                     loading={loading}
                 />
+                </div>
             </form>
         );
     }
