@@ -22,7 +22,7 @@ User can upload an audio file to an Amazon S3 bucket. User is then redirected to
 User can see songs by self or other users. 
 
 ## Technologies Used
-React.js
-Node.js
-Postgresql
+React.js \
+Node.js \
+Postgresql \
 Amazon S3
