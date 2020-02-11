@@ -45,11 +45,7 @@ const ApiService = {
     },
     getLikesByUserId(userId) {
         return fetch(`${config.API_ENDPOINT}/likes/user/${userId}`)
-        .then(res =>
-            (!res.ok)
-                ? res.json().then(e => Promise.reject(e))
-                : res.json()
-        )
+        .then(res => res.json())
     },
     getLikesBySongId(songId) {
         return fetch(`${config.API_ENDPOINT}/likes/song/${songId}`)

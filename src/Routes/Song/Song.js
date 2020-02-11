@@ -18,10 +18,7 @@ class Song extends Component {
         user: 1
     }
     
-    setLikesCounts() {
-
-
-    }
+ 
 
     setLikes(data) {
         this.setState({

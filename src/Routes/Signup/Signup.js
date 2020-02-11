@@ -19,10 +19,7 @@ class Signup extends Component {
             password: this.state.password
         }
         ApiServices.createUser(newUser)
-            .then(res => {
-                res.json()
-            })
-            .then(res => console.log(res))
+            .then(res => this.loginNewUser())
             .catch(res => {
                 this.setState({ error: res.error })
             })
@@ -68,7 +65,6 @@ class Signup extends Component {
 
     verifyPw() {
         this.state.password === this.state.confirmPassword ?
-            // this.verifySpecials()
             this.handleSubmit()
             : this.setState({
                 error: `Passwords don't match.`
